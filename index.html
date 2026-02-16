@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    /* Reset and Layout */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f0f2f5; }
+
+    /* Slider Container */
+    .slider-container {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Hide Radio Buttons */
+    input[type="radio"] { display: none; }
+
+    /* Slides Wrapper */
+    .slides {
+      display: flex;
+      width: 400%; /* 100% * number of slides */
+      height: 100%;
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    /* Individual Slide */
+    .slide {
+      width: 25%; /* 100% / number of slides */
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    /* Background Colors for Demo */
+    .slide:nth-child(1) { background: #3498db; }
+    .slide:nth-child(2) { background: #e74c3c; }
+    .slide:nth-child(3) { background: #2ecc71; }
+    .slide:nth-child(4) { background: #f1c40f; }
+
+    /* Navigation Dots */
+    .navigation-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+    }
+
+    .dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .dot:hover { background: white; }
+
+    /* Logic: Control Slide Movement using Radio Selection */
+    #radio1:checked ~ .slides { transform: translateX(0); }
+    #radio2:checked ~ .slides { transform: translateX(-25%); }
+    #radio3:checked ~ .slides { transform: translateX(-50%); }
+    #radio4:checked ~ .slides { transform: translateX(-75%); }
+
+    /* Logic: Highlight Active Dot */
+    #radio1:checked ~ .navigation-dots label[for="radio1"],
+    #radio2:checked ~ .navigation-dots label[for="radio2"],
+    #radio3:checked ~ .navigation-dots label[for="radio3"],
+    #radio4:checked ~ .navigation-dots label[for="radio4"] {
+      background: white;
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider-container">
+    <!-- Radio Controllers -->
+    <input type="radio" name="slider" id="radio1" checked>
+    <input type="radio" name="slider" id="radio2">
+    <input type="radio" name="slider" id="radio3">
+    <input type="radio" name="slider" id="radio4">
+
+    <!-- Slides -->
+    <div class="slides">
+      <div class="slide">Slide 1</div>
+      <div class="slide">Slide 2</div>
+      <div class="slide) ">Slide 3</div>
+      <div class="slide">Slide 4</div>
+    </div>
+
+    <!-- Manual Navigation Dots -->
+    <div class="navigation-dots">
+      <label for="radio1" class="dot"></label>
+      <label for="radio2" class="dot"></label>
+      <label for="radio3" class="dot"></label>
+      <label for="radio4" class="dot"></label>
+    </div>
+  </div>
+
+</body>
+</html>
